@@ -1,0 +1,94 @@
+.figure-hubble-1{
+
+  background-image: url( '../figures/hubble-1' );
+}
+
+.figure.arduino-1{
+
+  width: 400px;
+  height: 317px;
+  background-image: url('../figures/arduino-1.jpg');
+  background-size: 400px auto;
+  margin: auto;
+}
+
+.figure.lens-light{
+  height: 288px;
+  margin: auto;
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.figure.l-l-0{
+  background-image: url('../figures/lens-lights-0.png');
+}
+.figure.l-l-1{
+  background-image: url('../figures/lens-lights-1.png');
+}
+.figure.l-l-2{
+  background-image: url('../figures/lens-lights-2.png');
+}
+.figure.l-l-3{
+  background-image: url('../figures/lens-lights-3.png');
+}
+.figure.l-l-4{
+  background-image: url('../figures/lens-lights-4.png');
+}
+
+.figure.ws2812{
+
+  width: 300px;
+  height: 300px;
+  background-image: url('../figures/ws2812.png');
+  background-size: 300px auto;
+  margin: auto;
+}
+
+.figure.blinky-pixels{
+
+  width: 300px;
+  height: 300px;
+  background-image: url('../figures/blinky-pixels.jpg');
+  background-size: 300px auto;
+  margin: auto;
+}
+
+
+.figure.node-js{
+  height: 300px;
+  width: 490px;
+  background-image: url('../figures/node.svg');
+  background-size: 300px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.figure.react-js{
+  height: 200px;
+  width: 200px;
+  background-image: url('../figures/react.svg');
+  background-size: 200px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+.figure.nw-js{
+  height: 128px;
+  width: 128px;
+  background-image: url('../figures/nwjs.png');
+  background-size: 128px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+

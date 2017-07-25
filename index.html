@@ -7,7 +7,8 @@
 		<title>reveal.js</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="css/figures.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -24,10 +25,279 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+          <h3>Synchronized Lighting</h3>
+          <p>For a Photo Booth</p>
+          <aside class='notes'>
+            yay for listening me talk for the next hour...
+          </aside>
+        </section>
+
+        <section>
+          <h3>Background</h3>
+          <ul>
+            <li class="fragment">Brother designing a Rentable Photo Booth</li>
+            <li class="fragment">Arcade Style with Buttons and Lights</li>
+            <li class="fragment">Asked Me for Help with Lighting</li>
+          </ul>
+
+          <aside class='notes'>
+            <p>Synchronized Lighting for a Photo Booth is kind of a random topic, might
+            be useful for me to give a little background</p>
+            <p>I think he had seen one somewhere and thought he should make one, to rent out for events</p>
+            <p>Wanted it to do more than take photos (had some life to it)</p>
+          </aside>
+        </section>
+        <section>
+          <section data-transition-speed="fast" data-background-color="#333333"> 
+            <h3>Hubble Booth</h3>
+            <a href='http://hubblebooth.com'>hubblebooth.com</a>
+          </section>
+          <section data-transition="slide" data-background-color="#000000" data-background-image="./figures/hubble-1.png">
+            <aside class='notes'>
+              <ul>
+                <li>here is basic design</li>
+                <li>arcade game style with buttons</li>
+              </ul>
+            </aside>
+          </section>
+          <section data-transition="fade " data-background-color="#000000" data-background-image="./figures/hubble-2.png">
+            <aside class='notes'>
+                <p>most of what he wanted to do could be done with off the shelf parts and software (e.g. btns,
+                photobooth app, nintendo emulator)</p>
+                <p>computer in lower part of cabinet, pb app uses hotkeys to operate fullscreen</p>
+                <p>note multiple places where lights could be</p>
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <h4>lighting problem</h4>
+          <ul>
+            <li class="fragment">Buttons should trigger different lighting events</li>
+            <li class="fragment">Buttons still need to perfrom other tasks</li>
+            <li class="fragment">Lights needed to be able to change color</li>
+            <li class="fragment">Lights needed to be well synchronized</li>
+          </ul>
+          <aside class='notes'>
+            <p>Some lighting tasks, like bringing attention to lens (since people will tend to look at screen)
+               required some synchronization</p>
+          </aside>
+        </section>
+
+
+        <section data-transition='fade'>
+          <h4>example</h4>
+          <div class='figure lens-light l-l-0'></div>
+        </section>
+        <section data-transition='fade'>
+          <h4>example</h4>
+          <div class='figure lens-light l-l-1'></div>
+        </section>
+        <section data-transition='fade'>
+          <h4>example</h4>
+          <div class='figure lens-light l-l-2'></div>
+        </section>
+        <section data-transition='fade'>
+          <h4>example</h4>
+          <div class='figure lens-light l-l-3'></div>
+        </section>
+        <section data-transition='fade'>
+          <h4>example</h4>
+          <div class='figure lens-light l-l-4'></div>
+        </section>
+
+
+        <section>
+          <h4>design considerations</h4>
+          <ul>
+            <li class="fragment" data-fragment-index="1">Buttons already wired for Keyboard emulation</li>
+            <li class="fragment" data-fragment-index="2">Already computer on-board</li>
+            <li class="fragment" data-fragment-index="3">Light setup should be easy to configure</li>
+          </ul>
+          <div class="fragment" data-fragment-index="1" class='figure-container'>
+            <div class='figure arduino-1'></div>
+          </div>
+          <aside class='notes'>
+            <p>buttons -> keyboard for pb app and games</p>
+            <p>in the end, lighting will probably be frequently tweaked, so should be easy to change</p>
+          </aside>
+        </section>
+
+
+        <section>
+          <h4>light source</h4>
+           <ul>
+            <li class="fragment" data-fragment-index="1">WS2812 Integrated Light Source</li>
+            <li class="fragment" data-fragment-index="2">RGB LED</li>
+            <li class="fragment" data-fragment-index="3">Integrated driver chip controlled thru single wire</li>
+            <li class="fragment" data-fragment-index="4">Needs a micro controller to set colors</li>
+          </ul>
+          <div class="fragment" data-fragment-index="1" class='figure-container'>
+            <div class='figure ws2812'></div>
+          </div> 
+          <aside class='notes'>
+            as may have mentioned before, already had an idea that LEDs would be a good light source
+          </aside>
+        </section>
+
+
+        <section data-transition='fade' data-transition-speed='fast'>
+          <h4>lighting problem</h4>
+          <ul>
+            <li>Buttons should trigger different lighting events</li>
+            <li>Buttons still need to perfrom other tasks</li>
+            <li>Lights needed to be able to change color</li>
+            <li>Lights needed to be well synchronized</li>
+          </ul>
+        </section>
+
+
+        <section data-transition='fade' data-transition-speed='fast'>
+          <h4>lighting problem</h4>
+          <ul>
+            <li>Buttons should trigger different lighting events</li>
+            <li>Buttons still need to perfrom other tasks</li>
+            <li><strike>Lights needed to be able to change color</strike></li>
+            <li>Lights needed to be well synchronized</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h4>light source</h4>
+           <ul>
+            <li class="fragment" data-fragment-index="1">Blinky Pixels</li>
+            <li class="fragment" data-fragment-index="2">WS2812 Integrated Light Source</li>
+            <li class="fragment" data-fragment-index="3">Integrated Microcontroller with micro-USB</li>
+            <li class="fragment" data-fragment-index="4">Simple serial interface</li>
+          </ul>
+          <div class="fragment" data-fragment-index="1" class='figure-container'>
+            <div class='figure blinky-pixels'></div>
+          </div> 
+          <aside class='notes'>
+            <p>These were a great option because I already have a computer to work with which could interface
+            with several of these thru a USB hub.</p>
+            <p>They have a simple serial interface for setting RGB values of each LED</p>
+          </aside>
+        </section>
+
+
+        <section>
+          <h4>need some software</h4>
+          <ul>
+            <li class="fragment" data-fragment-index="1">Listen for keyboard events</li>
+            <li class="fragment" data-fragment-index="2">Translate to a light configuration</li>
+            <li class="fragment" data-fragment-index="3">Program LEDs of all connected lights</li>
+          </ul>
+          <aside class='notes'>
+            <ul>
+              <li>Now I can avoid wiring all the leds to the buttons</li>
+              <li>Just need some software to listen for same keys (synchronize)</li>
+              <li>This software can handle synchronizing lights</li>
+            </ul>
+          </aside>
+        </section>
+
+
+        <section data-transition='fade' data-transition-speed='fast'>
+          <h4>lighting problem</h4>
+          <ul>
+            <li>Buttons should trigger different lighting events</li>
+            <li>Buttons still need to perfrom other tasks</li>
+            <li><strike>Lights needed to be able to change color</strike></li>
+            <li>Lights needed to be well synchronized</li>
+          </ul>
+        </section>
+
+
+        <section data-transition='fade' data-transition-speed='fast'>
+          <h4>lighting problem</h4>
+          <ul>
+            <li><strike>Buttons should trigger different lighting events</strike></li>
+            <li><strike>Buttons still need to perfrom other tasks</strike></li>
+            <li><strike>Lights needed to be able to change color</strike></li>
+            <li><strike>Lights needed to be well synchronized</strike></li>
+          </ul>
+        </section>
+
+
+        <section data-background-color="#333" data-transition='fade'>
+          <h4>Design</h4>
+        </section>
+
+
+        <section data-background-color="#333" data-transition='fade'>
+          <h4>Environment</h4>
+          <ul>
+            <li class="fragment" data-fragment-index="1">JavaScript</li>
+            <li class="fragment" data-fragment-index="2">Node.js</li>
+            <li class="fragment" data-fragment-index="2">React</li>
+          </ul>
+          <div class="fragment" data-fragment-index="2" class='figure-container'>
+            <div class='figure node-js'></div>
+            <div class='figure react-js'></div>
+          </div> 
+        </section>
+
+
+        <section data-background-color="#333" data-transition='fade'>
+          <h4>Environment</h4>
+          <ul>
+            <li>Node.js</li>
+            <li class="fragment" data-fragment-index="1">JavaScript Runtime outside Browser</li>
+            <li class="fragment" data-fragment-index="2">Where bulk of application will be</li>
+            <li class="fragment" data-fragment-index="3">Packages for FS + Serial Port</li>
+            <li class="fragment" data-fragment-index="4">Can't run in a Browser</li>
+            <li class="fragment" data-fragment-index="5">It is hip</li>
+          </ul>
+          <div class='figure-container'>
+            <div class='figure node-js'></div>
+          </div> 
+        </section>
+
+
+        <section data-background-color="#333" data-transition='fade'>
+          <h4>Environment</h4>
+          <ul>
+            <li>React</li>
+            <li class="fragment" data-fragment-index="1">JavaScript UI framework</li>
+            <li class="fragment" data-fragment-index="2">Want to provide a UI for ease of configuration (in progress)</li>
+            <li class="fragment" data-fragment-index="3">Also very hip</li>
+          </ul>
+          <div class='figure-container'>
+            <div class='figure react-js'></div>
+          </div> 
+        </section>
+
+
+        <section data-background-color="#333" data-transition='fade'>
+          <h4>Environment</h4>
+          <ul>
+            <li>Browser + Non-Browser</li>
+            <li class="fragment" data-fragment-index="1">Could install Node and start webserver for UI</li>
+            <li class="fragment" data-fragment-index="2">Not very elegant or easy to use</li>
+            <li class="fragment" data-fragment-index="3">Also, need to be able to listen for hotkeys</li>
+            <li class="fragment" data-fragment-index="4">NW.js</li>
+          </ul>
+          <div class='figure-container fragment' data-fragment-index="4">
+            <div class='figure nw-js'></div>
+          </div> 
+          <aside class='notes'>
+            <ul>
+              <li>stands for node-webkit</li>
+              <li>complete support of webkit (whatever you can do in chrome, basically)</li>
+              <li>complete support of node APIs and can even call native modules (once their built with node-gyp)</li>
+              <li>in the end, all packaged up as a native application</li>
+              <li>there is also electron, but has timer issue</li>
+            </ul>
+          </aside>
+        </section>
+
+
 			</div>
 		</div>
+
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
