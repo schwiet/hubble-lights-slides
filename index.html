@@ -48,6 +48,21 @@
             <p>Wanted it to do more than take photos (had some life to it)</p>
           </aside>
         </section>
+
+
+        <section>
+          <h4>What I will talk about</h4>
+          <ul>
+            <li class="fragment">current free-time project, so WIP</li>
+            <li class="fragment">problems trying to solve</li>
+            <li class="fragment">how I got to solutions</li>
+            <li class="fragment">what still needs to be done</li>
+          </ul>
+          <aside class='notes'>
+            a little about what still needs to be done
+          </aside>
+        </section>
+
         <section>
           <section data-transition-speed="fast" data-background-color="#333333"> 
             <h3>Hubble Booth</h3>
@@ -90,15 +105,15 @@
           <h4>example</h4>
           <div class='figure lens-light l-l-0'></div>
         </section>
-        <section data-transition='fade'>
+        <section data-autoslide="500" data-transition='fade'>
           <h4>example</h4>
           <div class='figure lens-light l-l-1'></div>
         </section>
-        <section data-transition='fade'>
+        <section data-autoslide="500" data-transition='fade'>
           <h4>example</h4>
           <div class='figure lens-light l-l-2'></div>
         </section>
-        <section data-transition='fade'>
+        <section data-autoslide="500" data-transition='fade'>
           <h4>example</h4>
           <div class='figure lens-light l-l-3'></div>
         </section>
@@ -292,6 +307,617 @@
               <li>there is also electron, but has timer issue</li>
             </ul>
           </aside>
+        </section>
+
+
+        <section data-transition="fade " data-background-color="#333333">
+          <div class="figure hl-design hl-dsn"></div>
+          <aside class="notes">
+            bringing all this together, this is the basic high level design
+          </aside>
+        </section>
+        
+
+        <section data-transition="fade " data-background-color="#333333">
+          <div class="figure hl-btn-1 hl-dsn"></div>
+          <aside class="notes">
+
+          </aside>
+        </section>
+        
+
+        <section data-transition="fade " data-background-color="#333333">
+          <div class="figure hl-btn-2 hl-dsn"></div>
+          <aside class="notes">
+
+          </aside>
+        </section>
+        
+
+        <section data-transition="fade-in zoom-out" data-background-color="#333333">
+          <div class="figure hl-btn-3 hl-dsn"></div>
+          <aside class="notes">
+
+          </aside>
+        </section>
+        
+
+        <section data-transition="zoom-in fade-out" data-background-color="#333333">
+          <div class="figure hl-frame hl-dsn"></div>
+          <aside class="notes">
+
+          </aside>
+        </section>
+        
+
+        <section data-transition="fade-in zoom-out " data-background-color="#333333">
+          <div class="figure hl-btn-4 hl-dsn"></div>
+          <aside class="notes">
+
+          </aside>
+        </section>
+        
+
+        <section data-transition="zoom-in fade-out" data-background-color="#333333">
+          <div class="figure hl-scene hl-dsn"></div>
+          <aside class="notes">
+
+          </aside>
+        </section>
+        
+
+        <section data-transition="fade" data-background-color="#333333">
+          <div class="figure hl-frames-1 hl-dsn"></div>
+          <aside class="notes">
+            This is the critical step for synchronizing lights. Each light must display its complete frame
+            before moving to the next frame. This will allow us to define scenes that coordinate lighting
+          </aside>
+        </section>
+        
+
+        <section data-transition="fade " data-background-color="#333333">
+          <div class="figure hl-frames-2 hl-dsn"></div>
+          <aside class="notes">
+            
+          </aside>
+        </section>
+        
+
+        <section data-transition="fade " data-background-color="#333333">
+          <div class="figure hl-frames-3 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        
+
+        <section data-transition="fade" data-background-color="#333333">
+          <div class="figure hl-btn-4 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        
+
+        <section data-transition="fade" data-background-color="#333333">
+          <h4>Defining RGB values for each scene</h4>
+          <p>Usability Concerns</p>
+          <aside class="notes">
+            This leads to the obvious question: How do we define each scene?
+          </aside>
+        </section>
+        
+
+        <section data-transition="fade-in slide-out" data-background-color="#333333">
+          <section>
+            <div class="figure get-rgb hl-dsn"></div>
+            <aside class="notes">
+
+            </aside>
+          </section>
+          
+
+          <section data-background-color="#333333">
+            <p>Serial Port Interface</p>
+            <pre><code>
+                R       G       B      
+              {8-bits, 8-bits, 8-bits} -> interface
+
+              ...per LED
+
+              {xFF,    xFF,    xFF}    -> interface fin
+            </code></pre>
+            <aside class="notes">
+              This is what RGB data needs to look like going out the serial interface
+            </aside>
+          </section>
+          
+
+          <section data-background-color="#333333">
+            <p>Defining Frames</p>
+            <pre><code>
+              // frame definition for one light strip
+              var frame_1 = [
+                255, 0, 0, // single LED
+                255, 0, 0, 255, 0, 0, 255, 0, 0 ...
+              ]; 
+            </code></pre>
+            <aside class="notes">
+              a frame will at some point be represented as an array of r,g,b values,
+              so will be of size 3xnum_lights
+            </aside>
+          </section>
+
+
+          <section data-background-color="#333333">
+            <p>Defining Scenes</p>
+            <pre><code>
+              // scene definition for one light strip
+              var scene_1 = [
+                frame_1, frame_2, frame_3
+              ]; 
+            </code></pre>
+            <aside class="notes">
+              so a scene will be a collection of frames
+            </aside>
+          </section>
+        
+
+          <section data-background-color="#333333">
+            <p>Not Ideal for Definitions</p>
+            <ul>
+              <li class='fragment'>requires editing code file</li>
+              <li class='fragment'>very diffictult to visualize</li>
+            </ul>
+            <aside class="notes">
+            </aside>
+          </section>
+        </section>
+        
+
+        <section data-background-color="#333333">
+          <section>
+            <h4>Images as Definition</h4>
+            <ul>
+              <li class='fragment'>similar structure</li>
+              <li class='fragment'>easy to visualize</li>
+              <li class='fragment'>intuitive to edit. WYSIWYG</li>
+            </ul>
+            <aside class="notes">
+            </aside>
+          </section>
+        </section>
+
+
+        <section data-transition='fade' data-background-color="#333333">
+          <div class="figure img-scene-1 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section data-transition='fade' data-background-color="#333333">
+          <div class="figure img-scene-2 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section data-transition='fade' data-background-color="#333333">
+          <div class="figure img-scene-3 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section data-transition='fade' data-background-color="#333333">
+          <div class="figure img-scene-4 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section data-transition='fade' data-background-color="#333333">
+          <div class="figure img-scene-5 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section data-transition='fade' data-background-color="#333333">
+          <div class="figure img-scene-6 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section data-transition='fade' data-background-color="#333333">
+          <div class="figure img-scene-7 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        
+        <section data-transition='fade' data-background-color="#333333">
+          <section>
+            <div class="figure img-scene-8 hl-dsn"></div>
+            <aside class="notes">
+            </aside>
+          </section>
+          <section>
+            <h4>Now easy to configure scenes</h4>
+            <ul>
+              <li class='fragment'>user just needs to provide image files</li>
+              <li class='fragment'>scales well</li>
+              <li class='fragment'>img height is num LEDs per strip (60 in our case)</li>
+              <li class='fragment'>img width is number of frames in a scene</li>
+            </ul>
+            <aside class="notes">
+            </aside>
+          </section>
+          <section>
+            <div class="figure three-light-scene hl-dsn"></div>
+            <aside class="notes">
+            </aside>
+          </section>
+        </section>
+
+
+        <section data-background-color="#333333">
+          <section>
+            <h4>Configuration</h4>
+            <ul>
+              <li class='fragment'>need a way to associate img files with scenes</li>
+              <li class='fragment'>may want to use same image multiple times</li>
+              <li class='fragment'>achieve with a simple config file</li>
+            </ul>
+            <aside class="notes">
+            </aside>
+          </section>
+          <section>
+            <p>Defining Scenes</p>
+            <pre><code data-trim>
+              // config.json
+              {
+                "name": "scene-1",
+                "lights": {
+                  "light-1": { "img": "img-1.png" }, 
+                  "light-2": { "img": "img-2.png" }, 
+                  "light-3": { "img": "img-3.png" }, 
+                  "light-4": { "img": "img-4.png" }, 
+                  "light-5": { "img": "img-4.png" } // reuse img
+                }
+              };
+            </code></pre>
+            <aside class="notes">
+              <p>so a scene will be a collection of frames</p>
+              <p>JSON file easily loaded as JS object</p>
+              <p>can contain many scene objects</p>
+            </aside>
+          </section>
+          <section>
+            <h4>Configuration</h4>
+            <ul>
+              <li class='fragment'>need a way to associate hotkeys with scenes</li>
+              <li class='fragment'>may want different scenes to play at different rates</li>
+              <li class='fragment'>should also be easy to change on the fly</li>
+            </ul>
+            <aside class="notes">
+              <ul>
+                <li>when a user hits a key, need to know which images need to be sent to which lights</li>
+                <li>may need different degrees of update speed for different scenes</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <p>Defining Scenes</p>
+            <pre><code data-trim data-noescape>
+              // config.json
+              {
+                "name": "scene-1",
+                <b>"hotkey": "G",</b>
+                <b>"rate": 20, //ms 50fps</b>
+                "lights": {
+                  "light-1": { "img": "img-1.png" }, 
+                  "light-2": { "img": "img-2.png" }, 
+                  "light-3": { "img": "img-3.png" }, 
+                  "light-4": { "img": "img-4.png" }, 
+                  "light-5": { "img": "img-4.png" } // reuse img
+                }
+              };
+            </code></pre>
+            <aside class="notes">
+              so a scene will be a collection of frames
+            </aside>
+          </section>
+        </section>
+
+
+        <section data-background-color="#333333">
+          <section>
+            <h4>Modular Software Components</h4>
+            <ul>
+              <li class='fragment'>keep things decoupled</li>
+              <li class='fragment'>small files / concise responsibilities</li>
+              <li class='fragment'>makes it easy to change design</li>
+            </ul>
+            <aside class="notes">
+              <ul>
+                <li>With a good picture of how to get from A to Z, need to start putting blocks in place</li>
+                <li>I like to keep blocks small and maintainable</li>
+              </ul>
+            </aside>
+          </section>
+
+
+          <section>
+            <h4>Modules for What has Been Described</h4>
+            <ul>
+              <li class='fragment'>something to load config file</li>
+              <li class='fragment'>something to load/convert images</li>
+              <li class='fragment'>something to listen for hotkey events</li>
+              <li class='fragment'>something to connect to lights via serial port</li>
+              <li class='fragment'>something to execute scenes</li>
+              <li class='fragment'>loosely coupled way to bring it all together</li>
+            </ul>
+            <aside class="notes">
+              <ul>
+                <li>There needs to be a module to generate SCENE_ADDED events based on config file..</li>
+                <li>A module needs to load the appropriate img files and convert for serial interface</li>
+                <li>Hotkeys for triggering scenes in unison</li>
+                <li>Serial port interface module</li>
+                <li>Something needs to know how to synchronize the lights</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h4>Event Hub</h4>
+            <ul>
+              <li class='fragment'>interested parties subscribe for events:</li>
+              <li class='fragment'>scenes are discovered (config file or user)</li>
+              <li class='fragment'>img files have been initialized</li>
+              <li class='fragment'>lights have been connected to</li>
+              <li class='fragment'>scenes should be played (hotkey or ui)</li>
+              <li class='fragment'>user changes some configuration</li>
+            </ul>
+            <aside class="notes">
+            </aside>
+          </section>
+        </section>
+
+
+
+        <section data-background-color="#333333">
+          <section>
+            <div class="figure hl-event-hub hl-dsn"></div>
+            <aside class="notes">
+            </aside>
+          </section>
+          <section>
+            <h4>Register for events</h4>
+            <p>provide a callback and handle events of interest</p>
+            <pre><code data-trim>
+              var Dispatcher = require( 'hubble-lights/app-dispatcher' );
+
+              Dispatcher.register( function( payload ){
+                switch( payload.type ){
+
+                case Dispatcher.EventTypes.EVENT_OF_INTEREST:
+                  _handle_evt( payload.event );
+                  break;
+                }
+              });
+            </code></pre>
+            <aside class='notes'>
+              each of these module will have a block similar to this
+            </aside>
+          </section>
+          <section>
+            <p>example</p>
+            <pre><code data-trim>
+              // image-manager.js
+              case Dispatcher.EventTypes.SCENE_ADDED:
+                // for each light in scene
+                //   if have not already loaded the image needed
+                //     load file
+                //     create new scene array
+                //     for each column in image
+                //       create new frame array
+                //       push to scene
+                //       for each row in column
+                //         pull {r,g,b} from each pixel and push to frame
+                break;
+            </code></pre>
+          </section>
+        </section>
+        <section data-transition-speed='fast' data-transition='fade' data-background-color="#333333">
+          <div class="figure uc-init-1 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section data-transition-speed='fast' data-transition='fade' data-background-color="#333333">
+          <div class="figure uc-init-2 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section data-transition-speed='fast' data-transition='fade' data-background-color="#333333">
+          <div class="figure uc-init-3 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section data-transition-speed='fast' data-transition='fade-in slide-out' data-background-color="#333333">
+          <div class="figure uc-init-4 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        
+
+        <section data-transition-speed='fast' data-transition='slide' data-background-color="#333333">
+          <div class="figure hl-scene-player hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        
+
+        <section data-transition-speed='fast' data-transition='slide-in fade-out' data-background-color="#333333">
+          <div class="figure uc-play-1 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section data-transition-speed='fast' data-transition='fade' data-background-color="#333333">
+          <div class="figure uc-play-2 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section data-transition-speed='fast' data-transition='fade' data-background-color="#333333">
+          <div class="figure uc-play-3 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section data-transition-speed='fast' data-transition='fade' data-background-color="#333333">
+          <div class="figure uc-play-4 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section data-transition-speed='fast' data-transition='fade' data-background-color="#333333">
+          <section>
+            <div class="figure uc-play-5 hl-dsn"></div>
+            <aside class="notes">
+            </aside>
+          </section>
+          <section>
+            <pre><code data-trim>
+              // retrieve the proper connection and
+              // img frame data for each fixture
+              for( comName in scene.lights ){
+                if( scene.lights.hasOwnProperty( comName ) ){
+
+                light   = scene.lights[ comName ];
+                con     = ConMgr.getConnection( comName );
+                frames  = ImgMgr.getRgbFrames( light.imgId );
+
+               if( con && frames ){
+                 sessions.push( Session( con, frames ) );
+               }
+             }
+           }
+            </code></pre>
+            <aside class='notes'>
+
+            </aside>
+          </section>
+          <section>
+            <p>how the frames are synchronized with asynchronous serialport api</p>
+          </section>
+          <section>
+            <pre><code data-trim data-noescape>
+           // pushes the next frame down to each light
+           (push_frame = function(){
+
+             for( i = 0; i < sessions.length; i += 1 ){
+
+               session = sessions[ i ];
+               <i><b>pending_frames += 1; // <= Syncrhonization</b></i>
+               session.showFrame( tick_num, <i><b>frame_done </b></i>);
+             }
+
+              tick_num += 1;
+            }());
+
+            </code></pre>
+            <aside class='notes'>
+
+            </aside>
+          </section>
+          <section>
+            <pre><code data-trim data-noescape>
+           //re-iterates sequence to draw the next frame
+           frame_done = function(){
+             <i><b>pending_frames -= 1;</b></i>
+
+             // if all of the sessions have sent their frame info and
+             // this animation is still running, do the next
+             if( pending_frames === 0 && scene_handle === _timer_handle ){
+               _timer_handle = setTimeout( push_frame, scene.rate );
+               // keep an internal reference to the timer handle within
+               // this closure, so we can tell if it gets cancelled
+               // during an async sequence
+               scene_handle = _timer_handle;
+             }
+           };
+            </code></pre>
+            <aside class='notes'>
+
+            </aside>
+          </section>
+          <section>
+            <h4>Why this works</h4>
+            <ul>
+              <li class='fragment'>Node uses asyncrhonous IO model</li>
+              <li class='fragment'>your code runs in a single thread (event loop)</li>
+              <li class='fragment'>in a non-blocking manner</li>
+            </ul>
+          </section>
+        </section>
+
+
+        <section  data-transition='slide-in fade-out' data-background-color="#333333">
+          <div class="figure el-1 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section  data-transition='fade' data-background-color="#333333">
+          <div class="figure el-2 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section  data-transition='fade' data-background-color="#333333">
+          <div class="figure el-3 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section  data-transition='fade' data-background-color="#333333">
+          <div class="figure el-4 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section  data-transition='fade' data-background-color="#333333">
+          <div class="figure el-5 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section  data-transition='fade' data-background-color="#333333">
+          <div class="figure el-6 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section  data-transition='fade' data-background-color="#333333">
+          <div class="figure el-7 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+        <section  data-transition='fade-in slide-out' data-background-color="#333333">
+          <div class="figure el-8 hl-dsn"></div>
+          <aside class="notes">
+          </aside>
+        </section>
+
+
+        <section data-background-color="#333333">
+          <section>
+            <h4>Easy to test with different clients</h4>
+            <ul>
+              <li class='fragment'>working on a ui</li>
+              <li class='fragment'>but with everything in place, can write trivial cli</li>
+            </ul>
+          </section>
+          <section>
+            <pre><code data-trim data-noescape>
+            // scene-prompt.js 
+            (function askForScene(){
+               rl.question( "What scene number do you want to show? ", function( answer ){
+
+                 var scene_list = scenes.getScenes(), scene;
+
+                 if( +answer <= scene_list.length ){
+                   scene = scene_list[ +answer-1 ];
+                   dispatcher.UserActions.playScene( scene );
+                 }
+                 askForScene();
+               });
+             }());
+             //Kicks everything off
+             require( 'hubble-lights/util/config-manager' );
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          <h4>time for blinky lights</h4>
         </section>
 
 

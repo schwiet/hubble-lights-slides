@@ -1,3 +1,7 @@
+.figure{
+  background-repeat: no-repeat;
+}
+
 .figure-hubble-1{
 
   background-image: url( '../figures/hubble-1' );
@@ -92,3 +96,128 @@
   vertical-align: middle;
 }
 
+
+
+.figure.hl-dsn{
+
+  height: 700px;
+  background-size: auto 100%;
+  background-position: center;
+}
+.figure.hl-design{
+  background-image: url('../figures/hl-design.png');
+}
+.figure.hl-btn-1{
+  background-image: url('../figures/hl-btn-1.png');
+}
+.figure.hl-btn-2{
+  background-image: url('../figures/hl-btn-2.png');
+}
+.figure.hl-btn-3{
+  background-image: url('../figures/hl-btn-3.png');
+}
+.figure.hl-btn-4{
+  background-image: url('../figures/hl-btn-4.png');
+}
+.figure.hl-scene{
+  background-image: url('../figures/hl-scene.png');
+}
+.figure.hl-frame{
+  background-image: url('../figures/hl-frame.png');
+}
+.figure.hl-frames-1{
+  background-image: url('../figures/hl-frames-1.png');
+}
+.figure.hl-frames-2{
+  background-image: url('../figures/hl-frames-2.png');
+}
+.figure.hl-frames-3{
+  background-image: url('../figures/hl-frames-3.png');
+}
+.figure.get-rgb{
+  background-image: url('../figures/get-rgb.png');
+}
+.figure.img-scene-1{
+  background-image: url('../figures/img-scene-1.png');
+}
+.figure.img-scene-2{
+  background-image: url('../figures/img-scene-2.png');
+}
+.figure.img-scene-3{
+  background-image: url('../figures/img-scene-3.png');
+}
+.figure.img-scene-4{
+  background-image: url('../figures/img-scene-4.png');
+}
+.figure.img-scene-5{
+  background-image: url('../figures/img-scene-5.png');
+}
+.figure.img-scene-6{
+  background-image: url('../figures/img-scene-6.png');
+}
+.figure.img-scene-7{
+  background-image: url('../figures/img-scene-7.png');
+}
+.figure.img-scene-8{
+  background-image: url('../figures/img-scene-8.png');
+}
+.figure.three-light-scene{
+  background-image: url('../figures/3-light-scene.png');
+}
+.figure.hl-event-hub{
+  background-image: url('../figures/hl-event-hub.png');
+}
+.figure.hl-scene-player{
+  background-image: url('../figures/hl-scene-player.png');
+}
+.figure.uc-init-1{
+  background-image: url('../figures/uc-init-1.png');
+}
+.figure.uc-init-2{
+  background-image: url('../figures/uc-init-2.png');
+}
+.figure.uc-init-3{
+  background-image: url('../figures/uc-init-3.png');
+}
+.figure.uc-init-4{
+  background-image: url('../figures/uc-init-4.png');
+}
+.figure.uc-play-1{
+  background-image: url('../figures/uc-play-1.png');
+}
+.figure.uc-play-2{
+  background-image: url('../figures/uc-play-2.png');
+}
+.figure.uc-play-3{
+  background-image: url('../figures/uc-play-3.png');
+}
+.figure.uc-play-4{
+  background-image: url('../figures/uc-play-4.png');
+}
+.figure.uc-play-5{
+  background-image: url('../figures/uc-play-5.png');
+}
+.figure.el-1{
+  background-image: url('../figures/el-1.png');
+}
+.figure.el-2{
+  background-image: url('../figures/el-2.png');
+}
+.figure.el-3{
+  background-image: url('../figures/el-3.png');
+}
+.figure.el-4{
+  background-image: url('../figures/el-4.png');
+}
+.figure.el-5{
+  background-image: url('../figures/el-5.png');
+}
+.figure.el-6{
+  background-image: url('../figures/el-6.png');
+}
+.figure.el-7{
+  background-image: url('../figures/el-7.png');
+}
+.figure.el-8{
+  background-image: url('../figures/el-8.png');
+}
