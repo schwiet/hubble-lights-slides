@@ -16,6 +16,15 @@
   margin: auto;
 }
 
+.figure.turn-signal{
+  height: 214px;
+  margin: auto;
+  background-image: url('../figures/turn_signals.png');
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .figure.lens-light{
   height: 288px;
   margin: auto;
